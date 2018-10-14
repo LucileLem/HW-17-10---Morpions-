@@ -1,7 +1,7 @@
-var tour_du_joueur1 = 0;
-const cells = document.querySelectorAll('.cell');
-const gagnant_text = document.getElementById('gagnant');
-const restart = document.getElementById('restart');
+var tour_du_joueur1 = true;
+var cells = document.querySelectorAll('.cell');
+var gagnant_text = document.getElementById('gagnant');
+var restart = document.getElementById('restart');
 
 cells.forEach(cell => cell.addEventListener('click', jouer));
 restart.addEventListener('click', restartGame);
@@ -9,18 +9,27 @@ restart.addEventListener('click', restartGame);
 function jouer() {
 // 1 - verifier case remplie ou pas
 	if (!this.innerHTML) {
-		this.innerHTML = tour();
+		this.appendChild(tour());
+		tour_du_joueur1 = !tour_du_joueur1;
 	}
-	// minimum 5 tours avant d'avoir un gagnant
-	if (tour_du_joueur1 >= 5) {
-		verifierCombinaisons()
-	}
+	verifierCombinaisons()
 }
 
-// 2 - poser symbole ; si tour_du_joueur est un multiple de 2 c'est le joueur 2 qui vient de jouer
+// 2 - poser symbole ; si tour_du_joueur1 est true c'est le joueur 1 qui vient de jouer
 function tour() {
-	tour_du_joueur1++;
-	return tour_du_joueur1 % 2 === 0 ? 'O' : 'X';
+	if (tour_du_joueur1) {
+		var cross = document.createElement("img");
+		cross.src = 'images/cross.png';
+		cross.height = 164;
+		cross.width = 154;
+		return cross;
+	} else {
+	 	var circle = document.createElement("img");
+		circle.src = 'images/circle.png';
+		circle.height = 164;
+		circle.width = 154;
+		return circle;
+	}
 };
 
 function afficherGagnant(gagnant){
@@ -66,5 +75,5 @@ function verifierCombinaisons() {
 function restartGame(){
 	gagnant.style.display = 'none';
 	restart.style.display = 'none';
-	tour_du_joueur1 = 0;
+	tour_du_joueur1 = true;
 }

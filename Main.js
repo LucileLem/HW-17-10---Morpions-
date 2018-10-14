@@ -1,4 +1,5 @@
 var tour_du_joueur1 = true;
+var partie_gagnee = false;
 var cells = document.querySelectorAll('.cell');
 var gagnant_text = document.getElementById('gagnant');
 var restart = document.getElementById('restart');
@@ -8,11 +9,11 @@ restart.addEventListener('click', restartGame);
 
 function jouer() {
 // 1 - verifier case remplie ou pas
-	if (!this.innerHTML) {
+	if (!this.innerHTML && !partie_gagnee) {
 		this.appendChild(tour());
+		verifierCombinaisons()
 		tour_du_joueur1 = !tour_du_joueur1;
 	}
-	verifierCombinaisons()
 }
 
 // 2 - poser symbole ; si tour_du_joueur1 est true c'est le joueur 1 qui vient de jouer
@@ -35,9 +36,9 @@ function tour() {
 function afficherGagnant(gagnant){
 	console.log('WIN');	
 	gagnant_text.style.display = 'block';
-	gagnant_text.innerHTML = 'Bravo ' + (gagnant === 'X' ? 'joueur 1' : 'joueur 2') + '!';
+	gagnant_text.innerHTML = 'Bravo ' + (tour_du_joueur1 ? 'joueur 1' : 'joueur 2') + '!';
 	restart.style.display = 'block';
-	cells.forEach(cell => cell.innerHTML = '');
+	partie_gagnee = true;
 }
 
 	// 3 - check combinaison gagnante
@@ -73,6 +74,8 @@ function verifierCombinaisons() {
 
 // pour rajouter un peu de durée de vie !
 function restartGame(){
+	partie_gagnee = false;
+	cells.forEach(cell => cell.innerHTML = '');
 	gagnant.style.display = 'none';
 	restart.style.display = 'none';
 	tour_du_joueur1 = true;

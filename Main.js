@@ -5,19 +5,29 @@ var cells = document.querySelectorAll('.cell');
 var afficherSymbole = function(cell) {
 	// a remplir
 	// 1 - verifier case remplie ou pas
-	if (cell.textContent === '') {
+	if (!cell.firstChild) {
 		// 2 - poser symbole J1 ou j2
-		if (tourDuJoueur1) {
-			cell.textContent = 'X';
-		} else {
-			cell.textContent = 'O';
-		}
+		if (cell.firstChild = true) {
+				if (tourDuJoueur1) {
+					var cross = document.createElement("img");
+					cross.src = 'cross.png';
+					cross.height = 164;
+					cross.width = 154;
+					cell.appendChild(cross);
+				} else {
+					var circle = document.createElement("img");
+					circle.src = 'circle.png';
+					circle.height = 164;
+					circle.width = 154;
+					cell.appendChild(circle);
+					}}
+		else {  }
 		// 4 - changer le joueur courant
 		tourDuJoueur1 = !tourDuJoueur1;
 	}
 };
-
-var combinaisons = [[0, 1, 2], [3, 4, 5], [6, 7, 8]];
+//hori / verti / diagonales
+var combinaisons = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
 
 var verifierCombinaisons = function() {
 	// a remplir

@@ -9,7 +9,7 @@ restart.addEventListener('click', restartGame);
 cells.forEach(function(cell) {
 	cell.addEventListener('click', function() {
 		if (!partieGagnee) {
-			afficherSymbole(cell);			
+			afficherSymbole(cell);
 		}
 	});
 });
@@ -44,7 +44,7 @@ var verifierCombinaisons = function() {
 	combinaisons.forEach(function(combinaison) {
 		if (cells[combinaison[0]].innerHTML === cells[combinaison[1]].innerHTML &&
 			cells[combinaison[1]].innerHTML === cells[combinaison[2]].innerHTML &&
-			cells[combinaison[0]].innerHTML !== '') 
+			cells[combinaison[0]].innerHTML !== '')
 		{
 			console.log('WIN');
 			gagnant_text.style.display = 'block';
@@ -54,7 +54,7 @@ var verifierCombinaisons = function() {
 		}
 	});
 	// 4 - changer le joueur courant
-	tourDuJoueur1 = !tourDuJoueur1;	
+	tourDuJoueur1 = !tourDuJoueur1;
 };
 
 // pour rajouter un peu de durée de vie !

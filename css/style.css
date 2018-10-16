@@ -10,11 +10,16 @@ body {
 
 h1{
   position: absolute;
-  top: 20px;
-  right: 800px;
+  top : 100px;
+  left : 30px;
   font-family: 'Permanent Marker', cursive;
-  font-size: 60px;
+  font-size: 80px;
   color: #FFBC03;
+}
+p {
+  font-family: 'Vibur', cursive;
+  color : #c10237;
+  font-size: 15px;
 }
 .morpion {
   width: 500px;

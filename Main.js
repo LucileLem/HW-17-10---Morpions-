@@ -1,13 +1,15 @@
 var tourDuJoueur1 = true;
 var partieGagnee = false;
 var cells = document.querySelectorAll('.cell');
+var gagnant_text = document.getElementById('gagnant');
+var restart = document.getElementById('restart');
+restart.addEventListener('click', restartGame);
 
 var afficherSymbole = function(cell) {
 	// a remplir
 	// 1 - verifier case remplie ou pas
-	if (!cell.firstChild) {
+	if (!cell.innerHTML) {
 		// 2 - poser symbole J1 ou j2
-		if (cell.firstChild = true) {
 				if (tourDuJoueur1) {
 					var cross = document.createElement("img");
 					cross.src = 'cross.png';
@@ -20,10 +22,9 @@ var afficherSymbole = function(cell) {
 					circle.height = 200;
 					circle.width = 189;
 					cell.appendChild(circle);
-					}}
-		else {  }
+					}
 		// 4 - changer le joueur courant
-		tourDuJoueur1 = !tourDuJoueur1;
+		verifierCombinaisons();
 	}
 };
 //hori / verti / diagonales
@@ -34,32 +35,35 @@ var combinaisons =
 [0, 4, 8], [2, 4, 6]];
 
 var verifierCombinaisons = function() {
-	// a remplir
 	// 3 - check combinaison gagnante
 	combinaisons.forEach(function(combinaison) {
 		if (
-			cells[combinaison[0]].textContent === cells[combinaison[1]].textContent &&
-			cells[combinaison[1]].textContent === cells[combinaison[2]].textContent &&
-			cells[combinaison[0]].textContent !== ''
-		) {
+			cells[combinaison[0]].innerHTML === cells[combinaison[1]].innerHTML &&
+			cells[combinaison[1]].innerHTML === cells[combinaison[2]].innerHTML &&
+			cells[combinaison[0]].innerHTML !== '') {
 			console.log('WIN');
-			var currentPlayer;
-			if (tourDuJoueur1) {
-				currentPlayer = 'joueur 2';
-			} else {
-				currentPlayer = 'joueur 1';
-			}
-			alert('Bravo ' + currentPlayer + '!');
+	gagnant_text.style.display = 'block';
+	gagnant_text.innerHTML = 'Bravo ' + (tourDuJoueur1 ? 'joueur 1' : 'joueur 2') + '!';
+	restart.style.display = 'block';
 			partieGagnee = true;
 		}
 	});
+	tourDuJoueur1 = !tourDuJoueur1;
 };
 
 cells.forEach(function(cell) {
 	cell.addEventListener('click', function() {
 		if (!partieGagnee) {
 			afficherSymbole(cell);
-			verifierCombinaisons();
+
 		}
 	});
 });
+// pour rajouter un peu de durée de vie !
+function restartGame(){
+	partieGagnee = false;
+	cells.forEach(cell => cell.innerHTML = '');
+	gagnant.style.display = 'none';
+	restart.style.display = 'none';
+	tourDuJoueur1 = true;
+}

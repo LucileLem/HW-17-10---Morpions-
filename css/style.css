@@ -10,18 +10,28 @@ body {
 
 h1{
   position: absolute;
+<<<<<<< HEAD
   top : 100px;
   left : 30px;
+=======
+  top: 20px;
+  right: 700px;
+>>>>>>> e292333f692c2bb47742ae2f029c26700614a6a1
   font-family: 'Permanent Marker', cursive;
   font-size: 80px;
   color: #FFBC03;
 }
+<<<<<<< HEAD
 p {
   font-family: 'Vibur', cursive;
   color : #c10237;
   font-size: 15px;
 }
 .morpion {
+=======
+
+.jeu {  
+>>>>>>> e292333f692c2bb47742ae2f029c26700614a6a1
   width: 500px;
   height: 500px;
   display: flex;
@@ -29,9 +39,18 @@ p {
   border : 5px solid #c10237;
 }
 
+.ended_game {
+    text-align: center;
+}
+
+.ended_game_btn {
+  display: flex; 
+  justify-content: center;
+}
+
 .row {
-flex : 1; /* Combinaison de 3 propriétés  */
-display: flex;
+  flex : 1; /* Combinaison de 3 propriétés  */
+  display: flex;
 }
 
 .cell {
@@ -39,3 +58,5 @@ display: flex;
   Cela fait la somme des flex. Ici = 3, Donc il occupera 1/3 de la surface */
   border : 5px solid #c10237;
 }
+
+
